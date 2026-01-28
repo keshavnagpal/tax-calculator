@@ -12,10 +12,9 @@ Calculates and compares in-hand income under Old and New Tax Regimes for FY 2025
 optional arguments:
   -h, --help            show this help message and exit
   -s SALARY, --salary SALARY
-                        Your gross annual salary (CTC). (default: None)
-  --metro, --no-metro   If you live in a metro city (e.g., Delhi, Mumbai). (default: True) (default:
-                        True)
-  --pf, --no-pf         If Provident Fund is part of your CTC. (default: True) (default: True)
+                        Your gross annual salary (CTC). 
+  --metro, --no-metro   If you live in a metro city (e.g., Delhi, Mumbai). 
+  --pf, --no-pf         If Provident Fund is part of your CTC.
 ```
 
 ## Note:
