@@ -206,6 +206,7 @@ def display_results(ctx: SalaryContext, old: TaxResult, new: TaxResult):
 {'Exemptions & Deductions':<28} | {'':<18} | {'':<20}
   {'HRA Exemption':<26} | {old.hra_exemption:18,.0f} | {new.hra_exemption:18,.0f}
   {'Section 80C Deduction':<26} | {old.c80_deduction:18,.0f} | {new.c80_deduction:18,.0f}
+  {'Section 80D Deduction':<26} | {SECTION_80D_LIMIT:18,.0f} | {0:18,.0f}
   {'Standard Deduction':<26} | {old.standard_deduction:18,.0f} | {new.standard_deduction:18,.0f}
 {'Total Deductions:':<28} | {old.total_deductions:18,.0f} | {new.total_deductions:18,.0f}
 ---------------------------------------------------------------------------
