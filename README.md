@@ -1,4 +1,4 @@
-# calculate-salary
+# tax-calculator
 
 Command line script to calculate taxes and in hand salary
 
