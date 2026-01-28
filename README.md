@@ -26,4 +26,4 @@ optional arguments:
 
 ## Sample Report:
 
-<img width="581" height="493" alt="image" src="https://github.com/user-attachments/assets/3bc5e79d-4d94-4805-87e8-64ea0f91a617" />
+<img width="555" height="512" alt="image" src="https://github.com/user-attachments/assets/081f9fb4-eb3b-4d86-a3cb-0bea0fde0602" />
