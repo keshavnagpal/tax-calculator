@@ -22,3 +22,8 @@ optional arguments:
 - Script Assumes Deductions under 80C, 80D, Section 10(13A) in old tax regime
 - No deductions are allowed in new tax regime (only employer pf is deducted if it is inclusive in salary)
 - To know more about income-tax slabs go to [income-tax-india](https://www.incometaxindia.gov.in/_layouts/15/dit/mobile/viewer.aspx?path=https://www.incometaxindia.gov.in/charts++tables/tax+rates.htm&k&IsDlg=0)
+
+
+## Sample Report:
+
+<img width="581" height="493" alt="image" src="https://github.com/user-attachments/assets/3bc5e79d-4d94-4805-87e8-64ea0f91a617" />
