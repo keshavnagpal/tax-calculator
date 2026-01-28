@@ -5,12 +5,12 @@ from dataclasses import dataclass
 # Source: Income Tax Department of India
 # Common
 HEALTH_AND_EDUCATION_CESS_RATE = 0.04
-STANDARD_DEDUCTION = 50_000.0
 
 # Old Tax Regime
 OLD_REGIME_REBATE_LIMIT = 500_000.0
 SECTION_80C_LIMIT = 150_000.0
 SECTION_80D_LIMIT = 50_000.0
+STANDARD_DEDUCTION = 50_000.0
 
 # New Tax Regime (Default)
 NEW_REGIME_REBATE_LIMIT = 1_200_000.0
@@ -56,7 +56,7 @@ class TaxResult:
     monthly_pf: float
     monthly_total: float
     hra_exemption: float = 0.0
-    c80_deduction: float = 0.0
+    c80_deduction: float = SECTION_80C_LIMIT
     standard_deduction: float = 0.0
     total_deductions: float = 0.0
 
@@ -87,21 +87,11 @@ def _calculate_surcharge(taxable_income: float, tax_payable: float, regime_name:
 
 def calculate_old_regime_tax(ctx: SalaryContext) -> TaxResult:
     """Calculates taxes based on the Old Tax Regime."""
-    # 1. Calculate HRA Exemption (assuming maximum possible deduction)
-    hra_exemption = ctx.hra
-
-    # 2. Calculate 80C Deductions
-    c80_deduction = min(ctx.pf_employee, SECTION_80C_LIMIT)
-
-    # 3. Standard Deduction
-    standard_deduction = STANDARD_DEDUCTION
-
-    # 4. Calculate total taxable income
-    total_deductions = hra_exemption + c80_deduction + standard_deduction + SECTION_80D_LIMIT
+    total_deductions = ctx.hra + SECTION_80C_LIMIT + STANDARD_DEDUCTION + SECTION_80D_LIMIT + ctx.pf_employer
     taxable_income = ctx.gross_annual - total_deductions
     taxable_income = max(0.0, taxable_income)
 
-    # 5. Apply tax slabs
+
     if taxable_income <= OLD_REGIME_REBATE_LIMIT:
         tax = 0.0
     else:
@@ -114,12 +104,12 @@ def calculate_old_regime_tax(ctx: SalaryContext) -> TaxResult:
         else:
             tax = 112_500 + (taxable_income - 1_000_000) * 0.30
 
-    # 6. Calculate Surcharge and Cess
+    # Calculate Surcharge and Cess
     surcharge = _calculate_surcharge(taxable_income, tax, "Old Regime")
     cess = (tax + surcharge) * HEALTH_AND_EDUCATION_CESS_RATE
     total_tax = tax + surcharge + cess
 
-    # 7. Calculate in-hand salary
+    # Calculate in-hand salary
     cash_salary = ctx.gross_annual - ctx.total_pf - total_tax
     monthly_in_hand = cash_salary / 12
     monthly_pf = ctx.total_pf / 12
@@ -134,9 +124,8 @@ def calculate_old_regime_tax(ctx: SalaryContext) -> TaxResult:
         monthly_in_hand=monthly_in_hand,
         monthly_pf=monthly_pf,
         monthly_total=monthly_in_hand + monthly_pf,
-        hra_exemption=hra_exemption,
-        c80_deduction=c80_deduction,
-        standard_deduction=standard_deduction,
+        hra_exemption=ctx.hra,
+        standard_deduction=STANDARD_DEDUCTION,
         total_deductions=total_deductions
     )
 
