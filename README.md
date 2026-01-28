@@ -5,17 +5,17 @@ Command line script to calculate taxes and in hand salary
 ## Usage
 
 ```
-usage: python3 income.py [-h] -s SALARY [-m METRO] [-pf PF]
+usage: income.py [-h] -s SALARY [--metro | --no-metro] [--pf | --no-pf]
 
-Calculates your taxes and in hand income
+Calculates and compares in-hand income under Old and New Tax Regimes for FY 2025-26.
 
 optional arguments:
   -h, --help            show this help message and exit
   -s SALARY, --salary SALARY
-                        Annual Salary
-  -m METRO, --metro METRO
-                        'yes' if you stay in a metro city, 'no' otherwise
-  -pf PF                'yes' if your pf is inclusive in the salary mentioned, 'no' otherwise
+                        Your gross annual salary (CTC). (default: None)
+  --metro, --no-metro   If you live in a metro city (e.g., Delhi, Mumbai). (default: True) (default:
+                        True)
+  --pf, --no-pf         If Provident Fund is part of your CTC. (default: True) (default: True)
 ```
 
 ## Note:
